@@ -48,7 +48,8 @@ ipjPageSiteGroupID=0;
 	}
 	$( document ).ready(function() {
 		// Clear visual noise
-		$("td#left, div#primary_nav_area, div#breadcrumb, div#top_nav_area, div.print.button").html("");
+		$("td#left").remove();
+		$("div#primary_nav_area, div#breadcrumb, div#top_nav_area, div.print.button").html("");
 		$("td#right p:nth-of-type(5)").remove();
 		$("td#right p:nth-of-type(4)").remove();
 		$("td#right p:nth-of-type(2)").remove();
@@ -468,7 +469,8 @@ ddtreemenu.createTree("sectionMenuElementID_1", true);
           		<div id="breadcrumb"></div>
             	
  <div id="info"></div>               
-                <H1>Weekend Timetable</H1><!-- CONTENT CONTROL START --><style type="text/css">
+                <H1>Weekend Timetable <span class="othertt">|</span> <a class="othertt" href="weekdaytimetable.html">Weekday Timetable</a></span></H1><!-- CONTENT CONTROL START --><style type="text/css">
+				.othertt { color:#a6a7ab; text-decoration:none;}
     table {
     border-collapse: collapse;
     margin-bottom: 3em;
