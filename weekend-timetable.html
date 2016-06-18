@@ -29,6 +29,40 @@ ipjPageSiteGroupID=0;
 <!--
 //-->
 </script>
+<script  type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+	<!--
+	function to24h(element, late) {	// late => 12 means midnight; 1 means 01:00
+		var time = element.text();
+		if (time.indexOf(":") < 0) return;
+		var hours_minutes = time.split(":");
+		var hours = parseInt(hours_minutes[0]);
+		if (late) {
+			if (hours == 1) hours = 13;
+		} else {
+			if (hours == 12) hours = 0;
+		}
+		hours = (hours + 12) % 24;
+		time = hours + ":" + hours_minutes[1];
+		element.html(time);	// clear any <span> etc tags
+	}
+	$( document ).ready(function() {
+		// Clear visual noise
+		$("td#left, div#primary_nav_area, div#breadcrumb, div#top_nav_area, div.print.button").html("");
+		$("td#right p:nth-of-type(5)").remove();
+		$("td#right p:nth-of-type(4)").remove();
+		$("td#right p:nth-of-type(2)").remove();
+		$("td#right strong:nth-of-type(2)").remove();
+		// Apply 24h
+		$(".NB_TT td:nth-child(n+9)").each(function(_) { to24h($(this)) });
+		$(".SB_TT td:nth-child(n+7)").each(function(_) { to24h($(this)) });
+		// Clear formatting & bolds done with <span>s...
+		$(".NB_TT td, .SB_TT td").css({"font-style": "normal", "font-weight": "normal"}).each(function(_) {
+			$(this).html($(this).text());
+		});
+	});
+	//-->
+</script>
 <meta name="Generator" content="IronPoint v7"/>
 <meta name="UpdateDateTime" content="5/26/2016 2:52:46 PM"/>
 
@@ -519,7 +553,7 @@ ddtreemenu.createTree("sectionMenuElementID_1", true);
 <strong>Download PRINT READY PDF TIMETABLES <a href="PDF_Schedulesd41d.html?" title="PDF Schedules">HERE</a></strong>
 <p>&nbsp;</p>
 <p><strong>Legend:</strong> <br />
-<em>am - italics</em>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<strong>pm - bold</strong>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;- Train bypasses station.&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;* Train departure may be delayed up to 15 minutes. </p>
+- Train bypasses station.&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;* Train departure may be delayed up to 15 minutes. </p>
 <table cellspacing="0" cellpadding="4">
     <tbody>
         <tr id="legend">
