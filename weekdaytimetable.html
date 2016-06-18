@@ -29,6 +29,39 @@ ipjPageSiteGroupID=0;
 <!--
 //-->
 </script>
+<script  type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+	<!--
+	function to24h(element, late) {	// late => 12 means midnight; 1 means 01:00
+		var time = element.text();
+		if (time.indexOf(":") < 0) return;
+		var hours_minutes = time.split(":");
+		var hours = parseInt(hours_minutes[0]);
+		if (late) {
+			if (hours == 1) hours = 13;
+		} else {
+			if (hours == 12) hours = 0;
+		}
+		hours = (hours + 12) % 24;
+		time = hours + ":" + hours_minutes[1];
+		element.html(time);	// clear any <span> etc tags
+	}
+	$( document ).ready(function() {
+		// Clear visual noise
+		$("td#left, div#primary_nav_area, div#breadcrumb, div#top_nav_area, div.print.button").html("");
+		$("td#right p:nth-of-type(2)").html("");
+		// Apply 24h
+		$(".NB_TT td:nth-child(n+25):nth-child(-n+48)").each(function(_) { to24h($(this)) });
+		$(".NB_TT td:nth-child(49)"                   ).each(function(_) { to24h($(this), true) });
+		$(".SB_TT td:nth-child(n+24):nth-child(-n+47)").each(function(_) { to24h($(this)) });
+		$(".SB_TT td:nth-child(n+48)"                 ).each(function(_) { to24h($(this), true) });
+		// Clear formatting & bolds done with <span>s...
+		$(".NB_TT td, .SB_TT td").css({"font-style": "normal", "font-weight": "normal"}).each(function(_) {
+			$(this).html($(this).text());
+		});
+	});
+	//-->
+</script>
 <meta name="Generator" content="IronPoint v7"/>
 <meta name="UpdateDateTime" content="5/13/2016 11:14:59 AM"/>
 
