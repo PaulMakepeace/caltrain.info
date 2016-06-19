@@ -26,10 +26,11 @@ Sure, or we could just have a single page that doesn't need any of that: [Caltra
 
 I didn't want to start messing around with the HTML manually so I used jQuery to adjust the DOM from a single place in the code. This way when the schedule is updated it'll be much easier to apply these changes to it.
 
-The schedule uses multiple `td:nth-child` to turn them italic or bold for AM and PM but late at night has to "fix" them and does that, frustratingly, with `span`s (instead of say, `class="pm"`...), so I couldn't figure how to easily use the computed style.
+The schedule uses multiple `td:nth-child` to turn columns italic or bold for AM and PM. When the schedule rolls over from 11PM to 12AM, however, it has to "fix" them and does that, frustratingly, using `span`s (instead of say, `class="pm"` or setting the style on the `td` directly...), so I couldn't figure how to easily use the computed style while resetting it cleanly.
 
-Alternatives: Caltrain, to their credit, has a developer page with a [GTFS](https://en.wikipedia.org/wiki/General_Transit_Feed_Specification) feed: [Caltrain GTFS](http://www.caltrain.com/developer.html). Presumably the plethora of iOS and Android apps use this. For a lot more than these 3-4 hours you could build your own schedule page I guess!
-  
+Caveat: I'm not a regular JavaScript programmer so school me ;-)
+
+Alternatives: Caltrain, to their credit, has a developer page with a [GTFS](https://en.wikipedia.org/wiki/General_Transit_Feed_Specification) feed: [Caltrain GTFS](http://www.caltrain.com/developer.html). Presumably the plethora of iOS and Android apps use this. For a lot more than these 3-4 hours you could build your own schedule page I guess! Ironically the feed is in 24 hour time ;-)
 
 
 
